@@ -5,11 +5,11 @@ public class TrafficLightZone : MonoBehaviour
     public enum LightState { Green, SlowDown, Red }
     public LightState currentState = LightState.Green;
 
-    public float minGreenTime = 3f;
-    public float maxGreenTime = 7f;
+    public float minGreenTime = 4f;
+    public float maxGreenTime = 8f;
     public float minRedTime = 3f;
     public float maxRedTime = 7f;
-    public float slowDownDuration = 1f;
+    public float slowDownDuration = 3.5f;
 
     public Light directionalLight;
     public Color greenColor = Color.green;
