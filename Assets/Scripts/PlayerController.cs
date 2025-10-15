@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     void ResetCharacter()
     {
-        transform.position = new Vector3(0f, 0.7f, -8f);
+        transform.position = new Vector3(1.24f, 0.7f, -7.922f);
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
