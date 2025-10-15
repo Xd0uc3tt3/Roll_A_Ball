@@ -56,7 +56,9 @@ public class PlayerController : MonoBehaviour
 
     void SetLineCountText()
     {
-        lineCountText.text = "Line Count: " + lineCount.ToString();
+        int percentage = lineCount * 5;
+
+        lineCountText.text = "Progress: " + percentage.ToString() + " %";
         if (lineCount >= 20)
         {
             winTextObject.SetActive(true);
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
     }
@@ -118,7 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = new Vector3(1.24f, 0.7f, -7.922f);
 
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
 }

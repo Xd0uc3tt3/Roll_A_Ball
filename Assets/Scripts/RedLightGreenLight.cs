@@ -37,7 +37,7 @@ public class TrafficLightZone : MonoBehaviour
     {
         if (currentState == LightState.Red && playerRb != null)
         {
-            if (playerRb.velocity.magnitude > movementThreshold)
+            if (playerRb.linearVelocity.magnitude > movementThreshold)
             {
                 if (loseTextObject != null)
                 {
