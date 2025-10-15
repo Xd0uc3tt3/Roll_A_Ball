@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Line
+  - traceHitbox
   layers:
   - Default
   - TransparentFX

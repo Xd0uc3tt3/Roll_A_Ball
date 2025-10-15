@@ -17,18 +17,25 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI lineCountText;
     private int lineCount;
 
+    public TextMeshProUGUI attemptText;
+    private int attempts = 3;
+
     private HashSet<GameObject> touchedLines = new HashSet<GameObject>();
 
     public GameObject winTextObject;
+    public GameObject loseTextObject;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
         lineCount = 0;
+        attempts = 3;
         SetCountText();
         SetLineCountText();
+        SetAttemptCountText();
         winTextObject.SetActive(false);
+        loseTextObject.SetActive(false);
     }
 
     void OnMove(InputValue movementValue)
@@ -41,7 +48,6 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-
         if (count >= 12)
         {
             winTextObject.SetActive(true);
@@ -55,7 +61,15 @@ public class PlayerController : MonoBehaviour
         {
             winTextObject.SetActive(true);
         }
+    }
 
+    void SetAttemptCountText()
+    {
+        attemptText.text = "Attempts Remaining: " + attempts.ToString();
+        if (attempts <= 0)
+        {
+            loseTextObject.SetActive(true);
+        }
     }
 
     void Update()
@@ -91,6 +105,22 @@ public class PlayerController : MonoBehaviour
                 SetLineCountText();
             }
         }
+
+        if (other.gameObject.CompareTag("traceHitbox"))
+        {
+            attempts--;
+            ResetCharacter();
+            SetAttemptCountText();
+        }
+    }
+
+    void ResetCharacter()
+    {
+        transform.position = new Vector3(0f, 0.7f, -8f);
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }
+
 
