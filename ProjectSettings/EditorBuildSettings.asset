@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MiniGame.unity
+    path: Assets/Scenes/RedLightGreenLight.unity
     guid: 4b16609c5f61a884784145c1a2e01a42
   m_configObjects: {}
