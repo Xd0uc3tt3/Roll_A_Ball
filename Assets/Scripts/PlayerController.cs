@@ -10,15 +10,24 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public float speed = 0;
+
     public TextMeshProUGUI countText;
     private int count;
+
+    public TextMeshProUGUI lineCountText;
+    private int lineCount;
+
+    private HashSet<GameObject> touchedLines = new HashSet<GameObject>();
+
     public GameObject winTextObject;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
+        lineCount = 0;
         SetCountText();
+        SetLineCountText();
         winTextObject.SetActive(false);
     }
 
@@ -37,6 +46,16 @@ public class PlayerController : MonoBehaviour
         {
             winTextObject.SetActive(true);
         }
+    }
+
+    void SetLineCountText()
+    {
+        lineCountText.text = "Line Count: " + lineCount.ToString();
+        if (lineCount >= 20)
+        {
+            winTextObject.SetActive(true);
+        }
+
     }
 
     void Update()
@@ -61,6 +80,16 @@ public class PlayerController : MonoBehaviour
             count++;
             other.gameObject.SetActive(false);
             SetCountText();
+        }
+
+        if (other.gameObject.CompareTag("Line"))
+        {
+            if (!touchedLines.Contains(other.gameObject))
+            {
+                lineCount++;
+                touchedLines.Add(other.gameObject);
+                SetLineCountText();
+            }
         }
     }
 }
