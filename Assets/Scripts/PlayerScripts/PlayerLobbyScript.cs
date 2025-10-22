@@ -9,8 +9,10 @@ public class PlayerLobby : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    public float speed = 10;
+    public float speed = 10f;
 
+    [Header("References")]
+    public Transform cameraTransform;
 
     void Start()
     {
@@ -26,8 +28,23 @@ public class PlayerLobby : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement * speed);
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+        camForward.y = 0f;
+        camRight.y = 0f;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moveDirection = camForward * movementY + camRight * movementX;
+
+        rb.AddForce(moveDirection * speed, ForceMode.Force);
+
+        if (moveDirection.sqrMagnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 10f * Time.deltaTime));
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -41,9 +58,9 @@ public class PlayerLobby : MonoBehaviour
     void ResetCharacter()
     {
         transform.position = new Vector3(0.0f, 0.5f, 0.0f);
-
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
 }
+
 
