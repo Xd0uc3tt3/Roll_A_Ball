@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    public float speed = 0;
+    public float speed = 0f;
+
+    [Header("References")]
+    public Transform cameraTransform;
 
     public TextMeshProUGUI countText;
     private int count;
@@ -24,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject winTextObject;
     public GameObject loseTextObject;
+
+    public bool RLGLCompleted = false;
+
 
     void Start()
     {
@@ -45,32 +52,24 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
-    void SetCountText()
+    void FixedUpdate()
     {
-        countText.text = "Count: " + count.ToString();
-        if (count >= 12)
-        {
-            winTextObject.SetActive(true);
-        }
-    }
+        Vector3 camForward = cameraTransform.forward;
+        Vector3 camRight = cameraTransform.right;
+        camForward.y = 0f;
+        camRight.y = 0f;
+        camForward.Normalize();
+        camRight.Normalize();
 
-    void SetLineCountText()
-    {
-        int percentage = lineCount * 5;
+        Vector3 moveDirection = camForward * movementY + camRight * movementX;
 
-        lineCountText.text = "Progress: " + percentage.ToString() + " %";
-        if (lineCount >= 20)
-        {
-            winTextObject.SetActive(true);
-        }
-    }
+        rb.AddForce(moveDirection * speed, ForceMode.Force);
 
-    void SetAttemptCountText()
-    {
-        attemptText.text = "Attempts Remaining: " + attempts.ToString();
-        if (attempts <= 0)
+ 
+        if (moveDirection.sqrMagnitude > 0.1f)
         {
-            loseTextObject.SetActive(true);
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 10f * Time.deltaTime));
         }
     }
 
@@ -81,12 +80,6 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
-    }
-
-    void FixedUpdate()
-    {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        rb.AddForce(movement * speed);
     }
 
     void OnTriggerEnter(Collider other)
@@ -116,10 +109,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
+        if (count >= 12)
+        {
+            winTextObject.SetActive(true);
+            RLGLCompleted = true;
+            SceneManager.LoadScene("Lobby");
+
+        }
+    }
+
+    void SetLineCountText()
+    {
+        int percentage = lineCount * 5;
+        lineCountText.text = "Progress: " + percentage.ToString() + " %";
+        if (lineCount >= 20)
+        {
+            winTextObject.SetActive(true);
+        }
+    }
+
+    void SetAttemptCountText()
+    {
+        attemptText.text = "Attempts Remaining: " + attempts.ToString();
+        if (attempts <= 0)
+        {
+            loseTextObject.SetActive(true);
+        }
+    }
+
     void ResetCharacter()
     {
         transform.position = new Vector3(1.24f, 0.7f, -7.922f);
-
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
