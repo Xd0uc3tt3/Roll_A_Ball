@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class PlayerLobby : MonoBehaviour
 {
     private Rigidbody rb;
     private float movementX;
     private float movementY;
+
     public float speed = 10f;
 
-    [Header("References")]
     public Transform cameraTransform;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        rb.linearDamping = 0f;
+        rb.angularDamping = 0.05f;
+        rb.useGravity = true;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     void OnMove(InputValue movementValue)
@@ -55,12 +59,13 @@ public class PlayerLobby : MonoBehaviour
         }
     }
 
-    void ResetCharacter()
+    public void ResetCharacter()
     {
         transform.position = new Vector3(0.0f, 0.5f, 0.0f);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
 }
+
 
 

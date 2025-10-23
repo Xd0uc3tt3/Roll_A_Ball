@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         if (count >= 12)
         {
             winTextObject.SetActive(true);
-            RLGLCompleted = true;
+            GamesManager.AdvanceToNextGame();
             SceneManager.LoadScene("Lobby");
 
         }
@@ -127,7 +127,8 @@ public class PlayerController : MonoBehaviour
         lineCountText.text = "Progress: " + percentage.ToString() + " %";
         if (lineCount >= 20)
         {
-            winTextObject.SetActive(true);
+            GamesManager.AdvanceToNextGame();
+            SceneManager.LoadScene("Lobby");
         }
     }
 
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour
         attemptText.text = "Attempts Remaining: " + attempts.ToString();
         if (attempts <= 0)
         {
-            loseTextObject.SetActive(true);
+            SceneManager.LoadScene("YouDiedScreen");
         }
     }
 

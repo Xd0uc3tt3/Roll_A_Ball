@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TrafficLightZone : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class TrafficLightZone : MonoBehaviour
             {
                 if (loseTextObject != null)
                 {
-                    loseTextObject.SetActive(true);
+                    SceneManager.LoadScene("YouDiedScreen");
                 }
             }
         }

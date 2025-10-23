@@ -537,12 +537,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae603313abede94b94554b0044391fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 0
+  cameraTransform: {fileID: 0}
   countText: {fileID: 1788419928}
   lineCountText: {fileID: 1788419928}
   attemptText: {fileID: 1209279000}
   winTextObject: {fileID: 1017792077}
   loseTextObject: {fileID: 663397251}
+  RLGLCompleted: 0
 --- !u!1 &244164187
 GameObject:
   m_ObjectHideFlags: 0
