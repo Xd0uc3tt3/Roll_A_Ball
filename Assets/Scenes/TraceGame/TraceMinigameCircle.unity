@@ -537,8 +537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ae603313abede94b94554b0044391fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  cameraTransform: {fileID: 0}
+  speed: 10
+  cameraTransform: {fileID: 1960599787}
   countText: {fileID: 1788419928}
   lineCountText: {fileID: 1788419928}
   attemptText: {fileID: 1209279000}

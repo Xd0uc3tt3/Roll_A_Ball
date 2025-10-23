@@ -54,22 +54,29 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
-        camForward.y = 0f;
-        camRight.y = 0f;
-        camForward.Normalize();
-        camRight.Normalize();
-
-        Vector3 moveDirection = camForward * movementY + camRight * movementX;
-
-        rb.AddForce(moveDirection * speed, ForceMode.Force);
-
- 
-        if (moveDirection.sqrMagnitude > 0.1f)
+        if (SceneManager.GetActiveScene().name != "TraceMinigameCircle")
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 10f * Time.deltaTime));
+            Vector3 camForward = cameraTransform.forward;
+            Vector3 camRight = cameraTransform.right;
+            camForward.y = 0f;
+            camRight.y = 0f;
+            camForward.Normalize();
+            camRight.Normalize();
+
+            Vector3 moveDirection = camForward * movementY + camRight * movementX;
+
+            rb.AddForce(moveDirection * speed, ForceMode.Force);
+
+            if (moveDirection.sqrMagnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 10f * Time.deltaTime));
+            }
+        }
+        else
+        {
+            Vector3 moveDirection = new Vector3(movementX, 0f, movementY);
+            rb.AddForce(moveDirection * speed, ForceMode.Force);
         }
     }
 
