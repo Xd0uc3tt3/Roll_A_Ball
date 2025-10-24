@@ -94,7 +94,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             count++;
-            other.gameObject.SetActive(false);
             SetCountText();
         }
 
@@ -119,7 +118,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 12)
+        if (count >= 1)
         {
             winTextObject.SetActive(true);
             GamesManager.AdvanceToNextGame();
