@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BackgroundMusic : MonoBehaviour
+public class MusicPlayer : MonoBehaviour
 {
-    private static BackgroundMusic instance;
+    private static MusicPlayer instance;
+    private AudioSource audioSource;
 
     void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
@@ -16,20 +17,26 @@ public class BackgroundMusic : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void OnEnable()
+    {
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "MainMenu")
+        if (scene.name != "MainMenu" && scene.name != "Lobby")
         {
             Destroy(gameObject);
         }
     }
-
-    void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
 }
+
 
