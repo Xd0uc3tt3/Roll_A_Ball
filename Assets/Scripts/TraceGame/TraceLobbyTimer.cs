@@ -2,10 +2,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class RLGLTimer : MonoBehaviour
+public class TraceLobbyTimer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    public float time = 150f;
+    public float time = 60f;
     public bool countDown = true;
     public bool isRunning = true;
 
@@ -30,9 +30,7 @@ public class RLGLTimer : MonoBehaviour
 
     void OnTimerEnd()
     {
-        SceneManager.LoadScene("YouDiedScreen");
+        SceneManager.LoadScene("TraceGameCircle");
     }
 }
-
-
 

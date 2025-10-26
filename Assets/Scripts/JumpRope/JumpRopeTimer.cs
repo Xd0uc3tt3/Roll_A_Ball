@@ -2,10 +2,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class RLGLTimer : MonoBehaviour
+public class JumpRopeTimer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
-    public float time = 150f;
+    public float time = 120f;
     public bool countDown = true;
     public bool isRunning = true;
 
@@ -33,6 +33,4 @@ public class RLGLTimer : MonoBehaviour
         SceneManager.LoadScene("YouDiedScreen");
     }
 }
-
-
 
