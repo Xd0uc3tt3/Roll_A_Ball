@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerJumpRope : MonoBehaviour
 {
@@ -88,6 +89,11 @@ public class PlayerJumpRope : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.CompareTag("KillZoneGround"))
+        {
+            SceneManager.LoadScene("YouDiedScreen");
         }
     }
 

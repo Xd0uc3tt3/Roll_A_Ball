@@ -9,6 +9,7 @@ TagManager:
   - traceHitbox
   - Zone
   - Rope
+  - KillZoneGround
   layers:
   - Default
   - TransparentFX
