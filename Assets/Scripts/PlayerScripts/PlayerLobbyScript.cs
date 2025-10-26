@@ -29,7 +29,7 @@ public class PlayerLobby : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current.eKey.wasPressedThisFrame && isGrounded)
         {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;

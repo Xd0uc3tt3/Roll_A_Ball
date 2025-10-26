@@ -48,6 +48,15 @@ public class PlayerJumpRope : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Keyboard.current.eKey.wasPressedThisFrame && isGrounded)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+    }
+
     void FixedUpdate()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
