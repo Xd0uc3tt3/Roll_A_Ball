@@ -5,7 +5,7 @@ public class GamesManager : MonoBehaviour
 {
     public static int currentGameIndex = 0;
 
-    private string[] gameScenes = { "RedLightGreenLight", "TraceMinigameCircle" };
+    private string[] gameScenes = { "RedLightGreenLight", "TraceMinigameCircle", "Mingle" };
 
     private void OnTriggerEnter(Collider other)
     {

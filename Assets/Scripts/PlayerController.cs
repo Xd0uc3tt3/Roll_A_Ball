@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public float speed = 0f;
+    public float jumpForce = 5f;
 
     [Header("References")]
     public Transform cameraTransform;
@@ -29,8 +30,12 @@ public class PlayerController : MonoBehaviour
     public GameObject winTextObject;
     public GameObject loseTextObject;
 
-    public bool RLGLCompleted = false;
+    public Transform groundCheck;
+    public float groundDistance = 0.2f;
+    public LayerMask groundMask;
 
+    public bool RLGLCompleted = false;
+    private bool isGrounded = true;
 
     void Start()
     {
@@ -52,6 +57,16 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    void OnJump(InputValue value)
+    {
+        Debug.Log("Jump pressed!");
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
+
     void FixedUpdate()
     {
         if (SceneManager.GetActiveScene().name != "TraceMinigameCircle")
@@ -64,7 +79,6 @@ public class PlayerController : MonoBehaviour
             camRight.Normalize();
 
             Vector3 moveDirection = camForward * movementY + camRight * movementX;
-
             rb.AddForce(moveDirection * speed, ForceMode.Force);
 
             if (moveDirection.sqrMagnitude > 0.1f)
@@ -78,6 +92,8 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDirection = new Vector3(movementX, 0f, movementY);
             rb.AddForce(moveDirection * speed, ForceMode.Force);
         }
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
     }
 
     void Update()
@@ -123,7 +139,6 @@ public class PlayerController : MonoBehaviour
             winTextObject.SetActive(true);
             GamesManager.AdvanceToNextGame();
             SceneManager.LoadScene("Lobby");
-
         }
     }
 

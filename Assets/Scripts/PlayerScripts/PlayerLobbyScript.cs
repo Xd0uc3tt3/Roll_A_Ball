@@ -8,10 +8,14 @@ public class PlayerLobby : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
+    private bool isGrounded = true;
 
     public float speed = 10f;
-
+    public float jumpForce = 7f;
     public Transform cameraTransform;
+    public Transform groundCheck;
+    public float groundDistance = 0.2f;
+    public LayerMask groundMask;
 
     void Start()
     {
@@ -30,24 +34,37 @@ public class PlayerLobby : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    void OnJump(InputValue value)
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
+
     void FixedUpdate()
     {
-        Vector3 camForward = cameraTransform.forward;
-        Vector3 camRight = cameraTransform.right;
-        camForward.y = 0f;
-        camRight.y = 0f;
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        camForward.Normalize();
-        camRight.Normalize();
-
-        Vector3 moveDirection = camForward * movementY + camRight * movementX;
-
-        rb.AddForce(moveDirection * speed, ForceMode.Force);
-
-        if (moveDirection.sqrMagnitude > 0.1f)
+        if (isGrounded)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 10f * Time.deltaTime));
+            Vector3 camForward = cameraTransform.forward;
+            Vector3 camRight = cameraTransform.right;
+            camForward.y = 0f;
+            camRight.y = 0f;
+
+            camForward.Normalize();
+            camRight.Normalize();
+
+            Vector3 moveDirection = camForward * movementY + camRight * movementX;
+            rb.AddForce(moveDirection * speed, ForceMode.Force);
+
+            if (moveDirection.sqrMagnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, 10f * Time.deltaTime));
+            }
         }
     }
 
