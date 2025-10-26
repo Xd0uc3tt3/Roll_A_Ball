@@ -91,6 +91,18 @@ public class PlayerJumpRope : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Rope"))
+        {
+            Vector3 pushDirection = (transform.position - collision.contacts[0].point).normalized;
+
+            float pushForce = -12f;
+            rb.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+        }
+    }
+
+
     public void ResetCharacter()
     {
         transform.position = new Vector3(0.0f, 0.5f, 0.0f);

@@ -27,6 +27,15 @@ public class PlayerLobby : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
+    void Update()
+    {
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+    }
+
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
