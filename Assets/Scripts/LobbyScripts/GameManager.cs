@@ -5,7 +5,7 @@ public class GamesManager : MonoBehaviour
 {
     public static int currentGameIndex = 0;
 
-    private string[] gameScenes = { "RedLightGreenLight", "TraceMinigameCircle", "JumpRope" };
+    private string[] gameScenes = { "RedLightGreenLight", "TraceMinigameLobby", "JumpRope" };
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,10 +17,6 @@ public class GamesManager : MonoBehaviour
 
     public void LoadNextGame()
     {
-        Debug.Log("Active GamesManager from scene: " + gameObject.scene.name);
-        Debug.Log("Current game index: " + currentGameIndex);
-        Debug.Log("Next scene name: " + gameScenes[currentGameIndex]);
-
         if (currentGameIndex < gameScenes.Length)
         {
             string nextScene = gameScenes[currentGameIndex];

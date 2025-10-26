@@ -5671,7 +5671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 2041192335}
   time: 150
-  countDown: 0
+  countDown: 1
   isRunning: 1
 --- !u!114 &121419097
 MonoBehaviour:
@@ -7977,7 +7977,7 @@ MonoBehaviour:
   attemptText: {fileID: 57111786}
   winTextObject: {fileID: 1017792077}
   loseTextObject: {fileID: 809645356}
-  groundCheck: {fileID: 0}
+  groundCheck: {fileID: 804270621}
   groundDistance: 0.2
   groundMask:
     serializedVersion: 2
@@ -30863,7 +30863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 804270621}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
