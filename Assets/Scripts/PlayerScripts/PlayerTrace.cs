@@ -26,7 +26,11 @@ public class PlayerTrace : MonoBehaviour
     public GameObject winTextObject;
     public GameObject loseTextObject;
 
-    public bool RLGLCompleted = false;
+    private bool justReset = false;
+    private bool canLoseAttempt = true;
+    private float resetTimer = 0f;
+
+
 
     void Start()
     {
@@ -75,7 +79,17 @@ public class PlayerTrace : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
+
+        if (!canLoseAttempt)
+        {
+            resetTimer -= Time.deltaTime;
+            if (resetTimer <= 0f)
+            {
+                canLoseAttempt = true;
+            }
+        }
     }
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -97,11 +111,19 @@ public class PlayerTrace : MonoBehaviour
 
         if (other.gameObject.CompareTag("traceHitbox"))
         {
-            attempts--;
-            ResetCharacter();
-            SetAttemptCountText();
+            if (canLoseAttempt)
+            {
+                canLoseAttempt = false;
+                attempts--;
+                ResetCharacter();
+                SetAttemptCountText();
+
+                resetTimer = 0.3f;
+            }
         }
     }
+
+
 
     void SetCountText()
     {
@@ -121,9 +143,13 @@ public class PlayerTrace : MonoBehaviour
         int maxLines;
 
         if (currentScene == "TraceMinigameUmbrella")
+        {
             maxLines = 53;
+        }
         else
+        {
             maxLines = 20;
+        }
 
         percentage = Mathf.RoundToInt(((float)lineCount / maxLines) * 100f);
 
@@ -150,8 +176,31 @@ public class PlayerTrace : MonoBehaviour
 
     void ResetCharacter()
     {
-        transform.position = new Vector3(1.24f, 0.7f, -7.922f);
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        switch (sceneName)
+        {
+            case "TraceMinigameCircle":
+                transform.position = new Vector3(1.24f, 0.7f, -7.922f);
+                break;
+
+            case "TraceMinigameTriangle":
+                transform.position = new Vector3(1.24f, 0.7f, -5.75f);
+                break;
+
+            case "TraceMinigameStar":
+                transform.position = new Vector3(1.24f, 0.7f, -5.55f);
+                break;
+
+            case "TraceMinigameUmbrella":
+                transform.position = new Vector3(0.85f, 0.7f, -4.52f);
+                break;
+        }
+
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+        justReset = false;
+
     }
+
 }

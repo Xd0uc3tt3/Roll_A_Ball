@@ -1133,7 +1133,6 @@ MonoBehaviour:
   attemptText: {fileID: 1209279000}
   winTextObject: {fileID: 1017792077}
   loseTextObject: {fileID: 663397251}
-  RLGLCompleted: 0
 --- !u!1001 &239271988
 PrefabInstance:
   m_ObjectHideFlags: 0
