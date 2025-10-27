@@ -116,14 +116,28 @@ public class PlayerTrace : MonoBehaviour
 
     void SetLineCountText()
     {
-        int percentage = lineCount * 5;
+        string currentScene = SceneManager.GetActiveScene().name;
+        int percentage;
+        int maxLines;
+
+        if (currentScene == "TraceMinigameUmbrella")
+            maxLines = 53;
+        else
+            maxLines = 20;
+
+        percentage = Mathf.RoundToInt(((float)lineCount / maxLines) * 100f);
+
+        percentage = Mathf.Clamp(percentage, 0, 100);
         lineCountText.text = "Progress: " + percentage.ToString() + " %";
-        if (lineCount >= 20)
+
+        if (lineCount >= maxLines)
         {
             GamesManager.AdvanceToNextGame();
             SceneManager.LoadScene("Lobby");
         }
     }
+
+
 
     void SetAttemptCountText()
     {
