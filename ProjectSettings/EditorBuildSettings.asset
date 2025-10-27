@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/TraceGame/TraceMinigameTriangle.unity
     guid: 8da3611c87a3d1d4c9eaef80a761c8e1
   - enabled: 1
+    path: Assets/Scenes/TraceGame/TraceMinigameStar.unity
+    guid: 61bce19506f4e9d4cb7ae9dac424f3f9
+  - enabled: 1
+    path: Assets/Scenes/JumpRope.unity
+    guid: 1cf48cb224322a5408c7f6767913837f
+  - enabled: 1
     path: Assets/Scenes/Menus/YouDiedScreen.unity
     guid: 33b994fbdfaf16e4eba63c1d0ca8d58c
   m_configObjects: {}

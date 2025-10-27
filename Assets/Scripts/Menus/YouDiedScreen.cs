@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class YouLooseScreen : MonoBehaviour
+public class YouDiedScreen : MonoBehaviour
 {
     public void ToMainMenu()
     {
