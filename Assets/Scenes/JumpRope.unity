@@ -10283,7 +10283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1306671400}
-  rotationSpeed: 100
+  rotationSpeed: 800
   wallBuffer: 0.2
   collisionLayers:
     serializedVersion: 2

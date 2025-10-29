@@ -75847,7 +75847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 220634022}
-  rotationSpeed: 1200
+  rotationSpeed: 800
   wallBuffer: 0.2
   collisionLayers:
     serializedVersion: 2
