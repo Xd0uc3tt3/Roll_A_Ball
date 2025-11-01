@@ -53,5 +53,3 @@ public class RotateRope : MonoBehaviour
         isDelaying = false;
     }
 }
-
-
