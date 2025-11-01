@@ -10306,7 +10306,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -35700,7 +35700,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 350.42142, y: 346.7, z: 489.9956}
-  m_LocalScale: {x: 179.60901, y: 0.11, z: 50.25929}
+  m_LocalScale: {x: 179.60541, y: 0.11, z: 51.479095}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 787419974}
