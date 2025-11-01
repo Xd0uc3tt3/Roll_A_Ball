@@ -10,6 +10,7 @@ TagManager:
   - Zone
   - Rope
   - KillZoneGround
+  - SoundTrigger
   layers:
   - Default
   - TransparentFX
