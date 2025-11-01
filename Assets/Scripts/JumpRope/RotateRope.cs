@@ -2,10 +2,17 @@ using UnityEngine;
 
 public class RotateForever : MonoBehaviour
 {
-    public float rotationSpeed = -100f;
+    public float baseSpeed = -150f;
+    public float speedVariation = 1.0f;
 
     void Update()
     {
-        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+        float zRotation = transform.eulerAngles.z;
+
+        if (zRotation > 180f) zRotation -= 360f;
+        float rotationMultiplier = 1f + Mathf.Sin(zRotation * Mathf.Deg2Rad) * speedVariation;
+
+        transform.Rotate(Vector3.forward * baseSpeed * rotationMultiplier * Time.deltaTime);
     }
 }
+
