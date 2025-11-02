@@ -11,6 +11,7 @@ TagManager:
   - Rope
   - KillZoneGround
   - SoundTrigger
+  - PlayerSpawn
   layers:
   - Default
   - TransparentFX

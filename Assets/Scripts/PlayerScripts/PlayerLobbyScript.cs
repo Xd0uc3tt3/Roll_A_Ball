@@ -25,6 +25,13 @@ public class PlayerLobby : MonoBehaviour
         rb.angularDamping = 0.05f;
         rb.useGravity = true;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        GameObject spawnPoint = GameObject.FindWithTag("PlayerSpawn");
+        if (spawnPoint != null)
+        {
+            transform.position = spawnPoint.transform.position;
+            transform.rotation = spawnPoint.transform.rotation;
+        }
     }
 
     void Update()
@@ -92,6 +99,3 @@ public class PlayerLobby : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 }
-
-
-
