@@ -11,7 +11,6 @@ public class IntroManager : MonoBehaviour
     {
         if (rlglTimer != null)
             rlglTimer.isRunning = false;
-        Debug.Log("Timer paused: " + rlglTimer.isRunning);
 
         if (redLightGreenLightScript != null)
             redLightGreenLightScript.enabled = false;
