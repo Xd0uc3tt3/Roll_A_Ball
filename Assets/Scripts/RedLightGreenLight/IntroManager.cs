@@ -5,15 +5,16 @@ public class IntroManager : MonoBehaviour
     public AudioSource introAudio;
     public GameObject invisibleWall;
     public MonoBehaviour redLightGreenLightScript;
-    public MonoBehaviour rlglTimerScript;
+    public RLGLTimer rlglTimer;
 
     void Start()
     {
+        if (rlglTimer != null)
+            rlglTimer.isRunning = false;
+        Debug.Log("Timer paused: " + rlglTimer.isRunning);
+
         if (redLightGreenLightScript != null)
             redLightGreenLightScript.enabled = false;
-
-        if (rlglTimerScript != null)
-            rlglTimerScript.enabled = false;
 
         if (invisibleWall != null)
             invisibleWall.SetActive(true);
@@ -31,11 +32,11 @@ public class IntroManager : MonoBehaviour
 
     void EndIntro()
     {
+        if (rlglTimer != null)
+            rlglTimer.isRunning = true;
+
         if (redLightGreenLightScript != null)
             redLightGreenLightScript.enabled = true;
-
-        if (rlglTimerScript != null)
-            rlglTimerScript.enabled = true;
 
         if (invisibleWall != null)
             invisibleWall.SetActive(false);

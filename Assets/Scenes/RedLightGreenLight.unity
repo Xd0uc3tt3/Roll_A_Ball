@@ -37793,7 +37793,7 @@ MonoBehaviour:
   introAudio: {fileID: 925598029}
   invisibleWall: {fileID: 1427327117}
   redLightGreenLightScript: {fileID: 420757299}
-  rlglTimerScript: {fileID: 121419098}
+  rlglTimer: {fileID: 121419096}
 --- !u!4 &925598028
 Transform:
   m_ObjectHideFlags: 0
@@ -81982,7 +81982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0:00
+  m_text: 2:30
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

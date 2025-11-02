@@ -33,6 +33,3 @@ public class RLGLTimer : MonoBehaviour
         SceneManager.LoadScene("YouDiedScreen");
     }
 }
-
-
-
