@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class IntroManager : MonoBehaviour
 {
+    public static bool IsIntroPlaying = true;
+
     public AudioSource introAudio;
     public GameObject invisibleWall;
     public MonoBehaviour redLightGreenLightScript;
@@ -9,6 +11,8 @@ public class IntroManager : MonoBehaviour
 
     void Start()
     {
+        IsIntroPlaying = true;
+
         if (rlglTimer != null)
             rlglTimer.isRunning = false;
 
@@ -31,6 +35,8 @@ public class IntroManager : MonoBehaviour
 
     void EndIntro()
     {
+        IsIntroPlaying = false;
+
         if (rlglTimer != null)
             rlglTimer.isRunning = true;
 

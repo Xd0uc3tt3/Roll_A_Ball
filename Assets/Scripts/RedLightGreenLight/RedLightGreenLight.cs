@@ -111,8 +111,25 @@ public class TrafficLightZone : MonoBehaviour
         if (audioSource == null || clips == null || clips.Length == 0)
             return;
 
+        if (IntroManager.IsIntroPlaying)
+        {
+            StartCoroutine(PlayAfterIntro(clips));
+            return;
+        }
+
         int index = Random.Range(0, clips.Length);
         audioSource.clip = clips[index];
         audioSource.Play();
     }
+
+    private System.Collections.IEnumerator PlayAfterIntro(AudioClip[] clips)
+    {
+        yield return new WaitUntil(() => !IntroManager.IsIntroPlaying);
+
+        int index = Random.Range(0, clips.Length);
+        audioSource.clip = clips[index];
+        audioSource.Play();
+    }
+
+
 }
