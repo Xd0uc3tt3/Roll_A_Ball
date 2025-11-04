@@ -8,10 +8,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Lobby");
     }
 
-    public void QuitGame()
+    public void ComfirmLeaveGame()
     {
-        Debug.Log("Quit Game");
-        Application.Quit();
+        SceneManager.LoadScene("ComfirmLeave");
     }
 }
 

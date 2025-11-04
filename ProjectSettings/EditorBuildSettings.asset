@@ -35,5 +35,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/YouDiedScreen.unity
     guid: 33b994fbdfaf16e4eba63c1d0ca8d58c
+  - enabled: 1
+    path: Assets/Scenes/Menus/ComfirmLeave.unity
+    guid: b1e7161a81d4e074faf2dae39910cc0f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
